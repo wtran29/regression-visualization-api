@@ -15,7 +15,7 @@ tasks:
   dev:
     desc: Run Flask application in development mode
     cmds:
-      - cp -n .env.example .env || true
+      - cmd /C "if not exist .env ( copy .env.example .env )"
       - docker compose up --build
     env:
       FLASK_ENV: development
@@ -24,7 +24,7 @@ tasks:
   prod:
     desc: Run Flask application in production mode using Gunicorn
     cmds:
-      - cp -n .env.production .env || true
+      - cmd /C "if not exist .env ( copy .env.production .env )"
       - docker compose up --build
     env:
       FLASK_ENV: production
